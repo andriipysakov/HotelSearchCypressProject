@@ -4,6 +4,8 @@ describe('The flight tab test will verify the flights funcionality', () => {
     // const origin_placeholder = '[placeholder="City or airport"][name="origin"]'
     const origin_placeholder = '[name="origin"]'
     const destination_placeholder = '[name="destination"]'
+    const checkin = '#input-start-2'
+    const checkout = '#input-end-2'
 
     before(() => {
         cy.visit('http://localhost:3000')
@@ -22,12 +24,12 @@ describe('The flight tab test will verify the flights funcionality', () => {
     })
 
 
-    // it('navigate to the flights tab', () => {
-    //     cy.get(origin_placeholder).should("be.visible")
-    //     cy.get(flights_tab).invoke('attr', 'aria-expanded').should("eq", "true")
-    //     cy.get(flights_tab).invoke('text').should("eq", "flight")
+    it('navigate to the flights tab', () => {
+        cy.get(origin_placeholder).should("be.visible")
+        cy.get(flights_tab).invoke('attr', 'aria-expanded').should("eq", "true")
+        cy.get(flights_tab).invoke('text').should("eq", "flight")
 
-    // })
+    })
 
     it('populates origin and destination', () => {
         cy.get(origin_placeholder).type("Paris").invoke("val").should("eq", "Paris")
@@ -37,6 +39,15 @@ describe('The flight tab test will verify the flights funcionality', () => {
         // cy.get(destination_placeholder).invoke("val").should("eq", "Berlin")
 
     })
+
+    it('populates check-in and check-out dates', () => {
+        cy.get(checkin).clear();
+        cy.get(checkin).type("01/01/2023").invoke("val").should("eq", "01/01/2023");
+        cy.get(checkout).clear();
+        cy.get(checkout).type("01/03/2023").invoke("val").should("eq", "01/03/2023");
+
+    })
+
 
 
 })
