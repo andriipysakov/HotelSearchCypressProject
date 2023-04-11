@@ -6,6 +6,9 @@ describe('The flight tab test will verify the flights funcionality', () => {
     const destination_placeholder = '[name="destination"]'
     const checkin = '#input-start-2'
     const checkout = '#input-end-2'
+    const business_radio_button = '[id="business"]'
+    const economy_radio_button = '[id="economy"]'
+    const f_class_radio_button = '[id="f_class"]'
 
     before(() => {
         cy.visit('http://localhost:3000')
@@ -45,6 +48,13 @@ describe('The flight tab test will verify the flights funcionality', () => {
         cy.get(checkin).type("01/01/2023").invoke("val").should("eq", "01/01/2023");
         cy.get(checkout).clear();
         cy.get(checkout).type("01/03/2023").invoke("val").should("eq", "01/03/2023");
+
+    })
+
+    it('check radio buttons', () => {
+        cy.get(business_radio_button).click().should("be.checked")
+        cy.get(economy_radio_button).click().should("be.checked")
+        cy.get(f_class_radio_button).click().should("be.checked")
 
     })
 
